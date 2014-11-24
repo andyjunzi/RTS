@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example33-production</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+  <script src="js/registration.js"></script>
+  <link rel="stylesheet" href="css/registration.css">
+</head>
+
+<body>
+    <section ng-app="registration">   <!-- ng-controller="appCtrl"  -->
+        <form class="form-horizontal" name="form" novalidate>
+            <div>
+                Name
+                    <input type="text"  ng-model="name" ng-model-options="{ updateOn: 'mousedown blur' }" name="name" class="form-control" required />{{name}}
+                	<span ng-show="form.name.$pending.username">Checking if this name is available ...</span>
+                	<span ng-show="form.name.$error.username">This username is already taken!</span>
+            </div>
+            <p><p>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <!-- <div class="col-sm-10"> -->
+                    <input type="email" ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" name="userEmail" class="form-control" required />
+                <!-- </div> -->
+                <div class="alert alert-danger" ng-show="appFormName.userEmail.$dirty && appFormName.userEmail.$invalid">Invalid: <span ng-show="appFormName.userEmail.$error.required">Tell us your email.</span>
+ <span ng-show="appFormName.userEmail.$error.email">This is not a valid email.</span>
+            	</div>
+            </div>
+            <p><p>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Gender</label>
+                    <input type="radio" ng-model="user.gender" value="male" />male
+                    <input type="radio" ng-model="user.gender" value="female" />female</div>
+            </div>
+            <p><p>
+            <div class="form-group">
+                <input type="checkbox" ng-model="user.agree" name="userAgree" required />I agree:
+                <input ng-show="user.agree" type="text" ng-model="user.agreeSign" class="form-control" required />
+            </div>
+            <div class="alert alert-danger" ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
+            <div class="form-group">
+                <button ng-click="reset()" ng-disabled="isUnchanged(user)" class="btn btn-default">reset</button>
+                <button ng-click="update(user)" ng-disabled="form.$invalid || isUnchanged(user)" class="btn btn-primary">save</button>
+            </div>            
+        <section class="well">    
+        </form> <pre>form = {{user | json}}</pre>
+ 		<pre>master = {{master | json}}</pre>
+		</section>
+</section>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example36-production</title>
+  
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+  <script src="js/test1.js"></script>
+  <link rel="stylesheet" href="css/test1.css">
+
+  
+</head>
+<body ng-app="form-example1">
+	<div ng-controller="appCtrl">
+  		<form name="form" class="css-form" novalidate>
+  			<div>
+    			Username:
+			    <input type="text" ng-model="user.name" name="name" username required/><br />
+			    <span ng-show="form.name.$pending.username">Checking if this name is available ...</span>
+			    <span ng-show="form.name.$error.username">This username is already taken!</span>
+  			</div>
+  
+			<div>
+			   Email:
+			    <input type="email" ng-model="user.email" ng-model-options="{ updateOn: 'blur' }" name="userEmail" class="form-control" required />
+				<div ng-show="form.userEmail.$dirty && form.userEmail.$invalid">Invalid:
+      				<span ng-show="form.userEmail.$error.required">Tell us your email.</span>
+      				<span ng-show="form.userEmail.$error.email">This is not a valid email.</span>
+    			</div>
+			</div>
+  
+			<div >
+			  Gender: 
+			  <input type="radio" ng-model="user.gender" value="male" />male
+			  <input type="radio" ng-model="user.gender" value="female" />female</div>
+			</div>
+  			<button ng-click="reset()" ng-disabled="isUnchanged(user)">RESET</button>
+   			 <button ng-click="update(user)" ng-disabled="form.$invalid || isUnchanged(user)">SAVE</button>
+	</form>
+	<pre>form = {{user | json}}</pre>
+  	<pre>master = {{master | json}}</pre>
+	</div>
+</body>
+</html>
